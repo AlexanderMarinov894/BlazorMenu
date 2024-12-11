@@ -1,0 +1,127 @@
+﻿@rendermode InteractiveServer
+
+@if (IsVisible)
+{
+	<div class="progress-blazor-menu-task-menu-item level-@Level"
+			@onclick="(Parent?.Root?.MenuOpenType == MenuOpenType.Click) ? OnMouseClickEventHandler : null"
+			@onmouseenter="(Parent?.Root?.MenuOpenType == MenuOpenType.MouseEnter) ? OnMouseEnterEventHandler : null"
+			@onmouseleave="OnItemMouseLeaveEventHandler">
+		<CascadingValue Value="this" Name="Parent">
+			<CascadingValue Value="@Parent" Name="Parent">
+				<div class="label @(IsActive ? "active" : null)">
+					<span>@Text</span>
+					@if (Items != null || ChildContent != null)
+					{
+						<span class="icon">
+							<i class="fa-solid fa-chevron-@(Level == 1 ? "down" : "right")"></i>
+						</span>
+					}
+				</div>	
+				@if (Items != null)
+				{
+					<MenuItems Items="Items"></MenuItems>
+				}
+				else if (ChildContent != null)
+				{
+					@ChildContent
+				}
+			</CascadingValue>
+		</CascadingValue>
+	</div>
+}
+
+@code 
+{
+	// Parameters
+
+	[Parameter] public required string Text { get; set; }
+	[Parameter] public List<MenuItemModel>? Items { get; set; }
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+
+	[CascadingParameter(Name = "Parent")] public MenuItems? Parent { get; set; }
+	[CascadingParameter(Name = "Level")] public int Level { get; set; }
+
+	// Fields
+
+	public MenuItems? Child { get; set; }
+
+	public bool IsVisible { get { return _IsVisible; } }
+	private bool _IsVisible;
+
+	public bool IsActive { get { return _IsActive; } }
+	private bool _IsActive;
+
+	// Methods
+
+	public void Show()
+	{
+		this._IsVisible = true;
+	}
+	public void Hide()
+	{
+		// hide items after main level (always visible)
+		if (Level > 1)
+			this._IsVisible = false;
+
+		// hide all item's children
+		if (this.Child != null)
+			this.Child.Children?.ForEach(x => x.Hide());
+	}
+
+	public void Activate() 
+	{
+		// acticate item
+		if (this.Child != null)
+			this._IsActive = true;
+		
+		// activate all nested item's parents (MenuItem)
+		this.Parent?.Parent?.Activate();
+
+	}
+	public void Deactivate() 
+	{
+		// deacticate item
+		this._IsActive = false;
+
+		// deactivate item's children
+		this.Child?.Children?.ForEach(x => x.Deactivate());
+	}
+
+	public void ShowChildren() 
+	{
+		// show item's children (if any)
+		this.Child?.Children?.ForEach(x => x.Show());
+
+		// activate the item
+		this.Activate();
+	}
+	public void HideChildren() 
+	{
+		// hide item's children (only for level 1)
+		if (Level == 1)
+			this.Child?.Children?.ForEach(x => x.Hide());
+
+		// deactivate item
+		this.Deactivate();
+	}
+
+	// Events
+
+	protected override void OnInitialized()
+	{
+		// set items on main level as visible by default
+		_IsVisible = (Level == 1);
+
+		// reference object as child to its parent (add to collection with other siblings)
+		if (Parent != null)
+		{
+			Parent.Children = Parent.Children ?? new List<MenuItem>();
+			Parent.Children.Add(this);
+		}
+	}
+
+	private void OnMouseClickEventHandler(MouseEventArgs e) => ShowChildren();
+	private void OnMouseEnterEventHandler(MouseEventArgs e) => ShowChildren();
+	private void OnItemMouseLeaveEventHandler(MouseEventArgs e) => HideChildren();
+	
+}

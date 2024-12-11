@@ -1,0 +1,63 @@
+﻿@rendermode InteractiveServer
+
+<div class="progress-blazor-menu-task-menu-list level-@Level" @onmouseleave="OnMouseLeaveEventHandler">
+	<CascadingValue Value="@(Level + 1)" Name="Level">
+		<CascadingValue Value="this" Name="Parent">
+			@if (Items != null)
+			{
+				foreach (var item in Items)
+				{
+					<MenuItem Text="@item.Text" Items="@item.Items"></MenuItem>
+				}
+			}
+			else if (ChildContent != null)
+			{
+				@ChildContent
+			}
+		</CascadingValue>
+	</CascadingValue>
+</div>
+
+@code 
+{
+	// Parameters
+
+	[Parameter] 
+	public List<MenuItemModel>? Items { get; set; }
+	[Parameter] 
+	public RenderFragment? ChildContent { get; set; }
+	[Parameter] 
+	public MenuItems? Child { get; set; }
+
+	[CascadingParameter(Name = "Level")] 
+	public int Level { get; set; } = 0;
+	[CascadingParameter(Name = "Root")]
+	public Menu? Root { get; set; }
+	[CascadingParameter(Name = "Parent")]
+	public MenuItem? Parent { get; set; }
+
+	// Fields
+
+	public List<MenuItem>? Children { get; set; }
+
+	// Events
+
+	protected override void OnInitialized()
+	{
+		// refrence first child to root object
+		if (Root != null && Level == 0)
+			Root.Child = this;
+
+		// reference object as a child to its parent
+		if (Parent != null)
+			Parent.Child = this;
+	}
+
+	private void OnMouseLeaveEventHandler(MouseEventArgs e)
+	{
+		// hide all children items if further than second menu level
+		if (Level >= 2)
+			this.Children?.ForEach(x => x.Hide());
+	}
+}
+

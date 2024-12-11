@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressBlazorMenuTask", "ProgressBlazorMenuTask\ProgressBlazorMenuTask\ProgressBlazorMenuTask.csproj", "{11707501-2D72-45E6-A291-2E9C01D6BA9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressBlazorMenuTask.Client", "ProgressBlazorMenuTask\ProgressBlazorMenuTask.Client\ProgressBlazorMenuTask.Client.csproj", "{2241F434-2A12-4465-A001-ADF033B93AE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressBlazorMenuTask.MenuComponent", "ProgressBlazorMenuTask.MenuComponent\ProgressBlazorMenuTask.MenuComponent.csproj", "{01070A42-E996-455A-A3DF-920B9D609115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11707501-2D72-45E6-A291-2E9C01D6BA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11707501-2D72-45E6-A291-2E9C01D6BA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11707501-2D72-45E6-A291-2E9C01D6BA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11707501-2D72-45E6-A291-2E9C01D6BA9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2241F434-2A12-4465-A001-ADF033B93AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2241F434-2A12-4465-A001-ADF033B93AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2241F434-2A12-4465-A001-ADF033B93AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2241F434-2A12-4465-A001-ADF033B93AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01070A42-E996-455A-A3DF-920B9D609115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01070A42-E996-455A-A3DF-920B9D609115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01070A42-E996-455A-A3DF-920B9D609115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01070A42-E996-455A-A3DF-920B9D609115}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

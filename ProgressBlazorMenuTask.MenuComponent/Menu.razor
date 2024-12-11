@@ -1,0 +1,27 @@
+﻿@rendermode InteractiveServer
+
+<div class="progress-blazor-menu-task-menu">
+    <CascadingValue Value="this" Name="Root">
+        @if (Items != null)
+        {
+            <MenuItems Items="Items"></MenuItems>
+        }
+        else if (ChildContent != null)
+        {
+            @ChildContent
+        }
+    </CascadingValue>
+</div>
+
+@code 
+{
+    // Parameters
+
+    [Parameter] public List<MenuItemModel>? Items { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public MenuOpenType MenuOpenType { get; set; } = MenuOpenType.MouseEnter;
+
+    // Fields
+
+    public MenuItems? Child { get; set; }
+}

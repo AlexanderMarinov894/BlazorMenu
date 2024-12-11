@@ -1,0 +1,105 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4" style="justify-content: flex-start;">
+            <Menu>
+                <MenuItems>
+                    <MenuItem Text="Item 1">
+                        <MenuItems>
+                            <MenuItem Text="Item 1.1"></MenuItem>
+                            <MenuItem Text="Item 1.2">
+                                <MenuItems>
+                                    <MenuItem Text="Item 1.2.1"></MenuItem>
+                                    <MenuItem Text="Item 1.2.2"></MenuItem>
+                                </MenuItems>
+                            </MenuItem>
+                        </MenuItems>
+                    </MenuItem>
+
+                    <MenuItem Text="Item 2">
+                        <MenuItems>
+                            <MenuItem Text="Item 2.1"></MenuItem>
+                        </MenuItems>
+                    </MenuItem>
+
+                    <MenuItem Text="Item 3"></MenuItem>
+
+                </MenuItems>
+            </Menu>
+        </div>
+
+       
+       @* <Menu Items="@menu.Items"></Menu> *@
+
+        <article class="content px-4">
+            @Body
+        </article>
+
+   
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+@code{
+
+
+
+    MenuModel menu = new MenuModel
+    {
+
+      Items = new List<MenuItemModel>
+      {
+          new MenuItemModel
+          {
+              Text = "Test1",
+               Items = new List<MenuItemModel>
+              {
+                   new MenuItemModel
+                  {
+                      Text = "Test3.1",
+                      Items = new List<MenuItemModel>
+                      {
+                          new MenuItemModel
+                          {
+                               Text = "3.1.1"
+                          }
+                      }
+                  },
+              }
+          },
+          new MenuItemModel
+          {
+              Text = "Test2"
+          },
+           new MenuItemModel
+          {
+              Text = "Test3",
+              Items = new List<MenuItemModel>
+              {
+                   new MenuItemModel
+                  {
+                      Text = "Test3.1",
+                      Items = new List<MenuItemModel>
+                      {
+                          new MenuItemModel
+                          {
+                               Text = "3.1.1"
+                          }
+                      }
+                  },
+              }
+          }
+      }
+        
+    };
+}

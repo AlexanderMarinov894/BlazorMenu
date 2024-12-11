@@ -1,0 +1,26 @@
+﻿.progress-blazor-menu-task-menu-item {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    text-align: left;
+    cursor: pointer;
+}
+.progress-blazor-menu-task-menu-item .label {
+    padding: 5px 10px;
+}
+.progress-blazor-menu-task-menu-item .label:hover {   
+    color: #ffab35;
+}
+.progress-blazor-menu-task-menu-item .label.active {
+    color: #ffab35;
+}
+.progress-blazor-menu-task-menu-item .icon {
+    float: right;
+    font-size: 13px;
+    vertical-align: middle;
+}
+.progress-blazor-menu-task-menu-item .progress-blazor-menu-task-menu-item {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #ced4da;
+}

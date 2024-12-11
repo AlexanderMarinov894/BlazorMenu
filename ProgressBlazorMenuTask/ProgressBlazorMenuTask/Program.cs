@@ -1,5 +1,3 @@
-using ProgressBlazorMenuTask.Client.Pages;
-using ProgressBlazorMenuTask.MenuComponent;
 using ProgressBlazorMenuTask.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +29,6 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(ProgressBlazorMenuTask.Client._Imports).Assembly)
     .AddAdditionalAssemblies(typeof(ProgressBlazorMenuTask.MenuComponent._Imports).Assembly);
 
 app.Run();

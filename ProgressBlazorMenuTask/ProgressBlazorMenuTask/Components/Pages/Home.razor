@@ -1,7 +1,44 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<div>
+	<h3>Menu, initialized with HTML definition</h3>
+	<hr />
+	<p>
+		A cascading menu with standard initialization directly through HTML code. <a href="/menuwithhtmldefinition">[Link]</a>
+	</p>
+</div>
 
-<h1>Hello, world!</h1>
+<div class="mt-5">
+	<h3>Menu, initialized with C# Data Model</h3>
+	<hr />
+	<p>
+		A cascading menu with initialization from a C# model, expecting a list of <strong style="color:#0d8da6;">MenuItemModel</strong> objects.
+		<a href="/menuwithdatamodel">[Link]</a>
+	</p>
+</div>
 
-Welcome to your new app.
+<div class="mt-5">
+	<h3>Menu with Icons</h3>
+	<hr />
+	<p>
+		A menu with FontAwesome icons displayed behind the text, where each <strong>MenuItem</strong> expects the FontAwesome icon name as the value for the Image property.
+		<a href="/menuwithicons">[Link]</a>
+	</p>
+</div>
+
+<div class="mt-5">
+	<h3>Menu that opens on click</h3>
+	<hr />
+	<p>
+		A menu that opens upon item click instead of on mouse hover, with the <strong style="color:#a52a2a;">MenuOpenType</strong> set to <strong style="color:#0d8da6;">MenuOpenType</strong><strong>.Click</strong>
+		<a href="/menuonclick">[Link]</a>
+	</p>
+</div>
+
+<div class="mt-5">
+	<h3>Documentation</h3>
+	<hr />
+	<p>
+		GitHub <a href="https://github.com/AlexanderMarinov894/BlazorMenu/blob/master/README.md">[Link]</a>
+	</p>
+</div>

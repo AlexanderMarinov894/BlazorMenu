@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProgressBlazorMenuTask.MenuComponent
 {
+    // Classes
+
     public class MenuModel 
     {
         public List<MenuItemModel>? Items { get; set; }
@@ -15,6 +17,8 @@ namespace ProgressBlazorMenuTask.MenuComponent
         public required string Text { get; set; }
         public List<MenuItemModel>? Items { get; set; }
     }
+
+    // Enums
 
     public enum MenuOpenType 
     {

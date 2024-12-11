@@ -2,30 +2,32 @@
 
 @if (IsVisible)
 {
-	<div class="progress-blazor-menu-task-menu-item level-@Level"
-			@onclick="(Parent?.Root?.MenuOpenType == MenuOpenType.Click) ? OnMouseClickEventHandler : null"
-			@onmouseenter="(Parent?.Root?.MenuOpenType == MenuOpenType.MouseEnter) ? OnMouseEnterEventHandler : null"
-			@onmouseleave="OnItemMouseLeaveEventHandler">
+	<div class="progress-blazor-menu-task-menu-item level-@Level" @onclick="OnMouseClickEventHandler" @onmouseenter="OnMouseEnterEventHandler" @onmouseleave="OnItemMouseLeaveEventHandler">
+		<!-- Menu Item Label -->
+		<div class="label @(IsActive ? "active" : null)">
+			@if (Icon != null)
+			{
+				<i class="fa-solid fa-@Icon icon"></i>
+			}
+			<span>@Text</span>
+			@if (Items != null || ChildContent != null)
+			{
+				<span class="expander">
+					<i class="fa-solid fa-chevron-@(Level == 1 ? "down" : "right")"></i>
+				</span>
+			}
+		</div>
+		
+		<!-- Menu Item Children -->
 		<CascadingValue Value="this" Name="Parent">
-			<CascadingValue Value="@Parent" Name="Parent">
-				<div class="label @(IsActive ? "active" : null)">
-					<span>@Text</span>
-					@if (Items != null || ChildContent != null)
-					{
-						<span class="icon">
-							<i class="fa-solid fa-chevron-@(Level == 1 ? "down" : "right")"></i>
-						</span>
-					}
-				</div>	
-				@if (Items != null)
-				{
-					<MenuItems Items="Items"></MenuItems>
-				}
-				else if (ChildContent != null)
-				{
-					@ChildContent
-				}
-			</CascadingValue>
+			@if (Items != null)
+			{
+				<MenuItems Items="Items"></MenuItems>
+			}
+			else if (ChildContent != null)
+			{
+				@ChildContent
+			}
 		</CascadingValue>
 	</div>
 }
@@ -37,6 +39,7 @@
 	[Parameter] public required string Text { get; set; }
 	[Parameter] public List<MenuItemModel>? Items { get; set; }
 	[Parameter] public RenderFragment? ChildContent { get; set; }
+	[Parameter] public string? Icon { get; set; }
 
 	[CascadingParameter(Name = "Parent")] public MenuItems? Parent { get; set; }
 	[CascadingParameter(Name = "Level")] public int Level { get; set; }
@@ -73,7 +76,7 @@
 		// acticate item
 		if (this.Child != null)
 			this._IsActive = true;
-		
+
 		// activate all nested item's parents (MenuItem)
 		this.Parent?.Parent?.Activate();
 
@@ -120,8 +123,16 @@
 		}
 	}
 
-	private void OnMouseClickEventHandler(MouseEventArgs e) => ShowChildren();
-	private void OnMouseEnterEventHandler(MouseEventArgs e) => ShowChildren();
+	private void OnMouseClickEventHandler(MouseEventArgs e) 
+	{
+		if (Parent?.Root?.MenuOpenType == MenuOpenType.Click)
+			ShowChildren();
+	}
+	private void OnMouseEnterEventHandler(MouseEventArgs e) 
+	{
+		if (Parent?.Root?.MenuOpenType == MenuOpenType.MouseEnter)
+			ShowChildren();
+	}
 	private void OnItemMouseLeaveEventHandler(MouseEventArgs e) => HideChildren();
 	
 }

@@ -15,6 +15,9 @@
     color: #ffab35;
 }
 .progress-blazor-menu-task-menu-item .icon {
+    margin-right: 5px;
+}
+.progress-blazor-menu-task-menu-item .expander {
     float: right;
     font-size: 13px;
     vertical-align: middle;

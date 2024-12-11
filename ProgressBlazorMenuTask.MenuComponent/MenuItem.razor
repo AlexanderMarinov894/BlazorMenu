@@ -2,7 +2,7 @@
 
 @if (IsVisible)
 {
-	<div class="progress-blazor-menu-task-menu-item level-@Level" @onclick="OnMouseClickEventHandler" @onmouseenter="OnMouseEnterEventHandler" @onmouseleave="OnItemMouseLeaveEventHandler">
+	<div class="progress-blazor-menu-task-menu-item level-@Level" @onclick="OnMouseClickEventHandler" @onmouseenter="OnMouseEnterEventHandler" @onmouseleave="OnMouseLeaveEventHandler">
 		<!-- Menu Item Label -->
 		<div class="label @(IsActive ? "active" : null)">
 			@if (Icon != null)
@@ -132,6 +132,6 @@
 		if (Parent?.Root?.MenuOpenType == MenuOpenType.MouseEnter)
 			ShowChildren();
 	}
-	private void OnItemMouseLeaveEventHandler(MouseEventArgs e) => HideChildren();
+	private void OnMouseLeaveEventHandler(MouseEventArgs e) => HideChildren();
 	
 }

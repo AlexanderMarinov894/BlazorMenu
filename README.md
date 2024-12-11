@@ -46,7 +46,7 @@ This project implements a reusable and customizable menu component using the Bla
 
     `git clone https://github.com/AlexanderMarinov894/BlazorMenu`
 
-2. Open the solution file `MenuComponent.sln` in Visual Studio.
+2. Open the solution file `ProgressBlazorMenuTask.sln` in Visual Studio.
 
 3. Build the solution to restore all dependencies.
 
